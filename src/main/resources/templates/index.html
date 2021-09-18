@@ -47,16 +47,22 @@
     <div class="py-5 text-center">
         <img class="d-block mx-auto mb-4" src="./img/ip.png" alt="" width="72" height="72">
         <h2 th:text="${ip}"></h2>
+        <p>
+            <input id="bar" type="hidden" th:value="${ip}"/>
+            <button id="btn" class="btn btn-secondary" type="button">
+                copy to clipboard
+            </button>
+        </p>
         <p></p>
         <p class="lead">This is you current public IP address.</p>
         <p class="lead"><a href="./api/whatismyip">Rest API</a> that power this service. </p>
-        <p>IP Icon made by&nbsp;<a href="https://www.flaticon.com/authors/pixel-perfect">Pixel perfect</a>&nbsp;from&nbsp;<a
-                href="http://www.flaticon.com/" target="_blank" rel="noopener noreferrer">www.flaticon.com</a></p>
         <p><a href="https://github.com/dguodev/whatismyip">Github Repo</a></p>
     </div>
 
     <footer class="my-5 pt-5 text-muted text-center text-small">
         <p class="mb-1">dguo.dev</p>
+        <p>IP Icon made by&nbsp;<a href="https://www.flaticon.com/authors/pixel-perfect">Pixel perfect</a>&nbsp;from&nbsp;<a
+                href="http://www.flaticon.com/" target="_blank" rel="noopener noreferrer">www.flaticon.com</a></p>
     </footer>
 </div>
 
@@ -69,6 +75,14 @@
 <script src="./js/popper.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
 <script src="./js/holder.min.js"></script>
+<script src="./js/clipboard.min.js"></script>
+<script type="text/javascript" th:inline="javascript">
+    var btn = document.querySelector('#btn');
 
+    btn.addEventListener('click', () => {
+        const textCopied = ClipboardJS.copy([[${ip}]]);
+        console.log('copied!', textCopied);
+    })
+</script>
 </body>
 </html>
