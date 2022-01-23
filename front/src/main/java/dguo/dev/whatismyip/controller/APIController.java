@@ -18,7 +18,6 @@ public class APIController {
 
     Logger logger = LoggerFactory.getLogger(APIController.class);
 
-
     @RequestMapping("/api/whatismyip")
     public IP home(HttpServletRequest request, @RequestHeader("x-forwarded-for") String sourceIP) {
 
