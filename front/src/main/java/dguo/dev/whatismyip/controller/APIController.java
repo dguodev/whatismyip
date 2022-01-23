@@ -24,7 +24,7 @@ public class APIController {
 
         String ip = request.getRemoteAddr();
 
-        logger.info("RemoteAddr {}", ip);
+        logger.info("RemoteAddr {} -", ip);
 
         if (!StringUtils.isEmpty(sourceIP)) {
 
