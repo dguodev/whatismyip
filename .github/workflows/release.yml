@@ -9,6 +9,13 @@ jobs:
     steps:
       - name: testecho
         run: echo ${GITHUB_REF}
+      - id: get-id
+        uses: actions/github-script@0.9.0
+        with:
+          script: |
+            const id = ${{GITHUB_REF}}.split('/')[2]
+            core.setOutput('id', id)
+      - run: echo "${{steps.get-id.outputs.id}}"
       - uses: octokit/request-action@v2.x
         id: get_latest_release
         with:
