@@ -7,6 +7,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-20.04
-      steps:
-        - name: testecho
-          run: echo '${GITHUB_REF}'
+    steps:
+      - name: testecho
+        run: echo '${GITHUB_REF}'
