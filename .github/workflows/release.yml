@@ -1,0 +1,12 @@
+name: release OCF Build Image
+
+on:
+  release:
+    type: [publish]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+      steps:
+        - name: testecho
+          run: echo '${GITHUB_REF}
