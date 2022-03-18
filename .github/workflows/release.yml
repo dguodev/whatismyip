@@ -1,5 +1,4 @@
-name: release OCF Build Image
-
+name: release 
 on:
   release:
     type: [publish]
