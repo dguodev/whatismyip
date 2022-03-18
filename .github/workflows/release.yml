@@ -8,20 +8,14 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: testecho
-        run: echo ${GITHUB_REF}
-      - id: get-id
-        uses: actions/github-script@0.9.0
-        with:
-          script: |
-            const id = GITHUB_REF.split('/')[2]
-            core.setOutput('id', id)
-      - run: echo "${{steps.get-id.outputs.id}}"
+        run: echo ${GITHUB_REF##}     
       - uses: octokit/request-action@v2.x
         id: get_latest_release
         with:
-          route: GET /repos/{owner}/{repo}/releases/latest
+          route: GET /repos/{owner}/{repo}/releases/tags/{tag}
           owner: dguodev
           repo: whatismyip
+          tag: ${{ GITHUB_REF## }}   
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: "echo latest release: ${{ steps.get_latest_release.outputs.data }}"
